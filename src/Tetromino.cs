@@ -2,9 +2,15 @@ namespace ConsoleTetris {
 
     class Tetromino {
 
-        public TetrominoType Type {get; private set;}
+        private const int TETROMINO_WIDTH = 8;
 
-        private string[,] bodies = {
+        public TetrominoType Type {get; private set;}
+        
+        private SquareType[,] Body;
+
+        // TODO fix compile error
+        private const string[][] BODIES = {
+            new string[]
             { // I-body
             "eeeeeeee",
             "eeeeeeee",
@@ -16,6 +22,7 @@ namespace ConsoleTetris {
             "eeeeeeee"
             },
 
+            new string[]
             { // L-body
             "eeeeeeee",
             "eeeeeeee",
@@ -27,6 +34,7 @@ namespace ConsoleTetris {
             "eeeeeeee"
             },
 
+            new string[]
             { // J-body
             "eeeeeeee",
             "eeeeeeee",
@@ -38,6 +46,7 @@ namespace ConsoleTetris {
             "eeeeeeee"
             },
 
+            new string[]
             { // O-body
             "eeeeeeee",
             "eeeeeeee",
@@ -49,6 +58,7 @@ namespace ConsoleTetris {
             "eeeeeeee"
             },
 
+            new string[]
             { // S-body
             "eeeeeeee",
             "eeeeeeee",
@@ -58,12 +68,44 @@ namespace ConsoleTetris {
             "eeSSSSee",
             "eeeeeeee",
             "eeeeeeee"
+            },
+
+            new string[]
+            { // T-body
+            "eeeeeeee",
+            "eeeeeeee",
+            "eeTTTTTT",
+            "eeTTTTTT",
+            "eeeeTTee",
+            "eeeeTTee",
+            "eeeeeeee",
+            "eeeeeeee"
+            },
+
+            new string[]
+            { // Z-body
+            "eeeeeeee",
+            "eeeeeeee",
+            "ZZZZeeee",
+            "ZZZZeeee",
+            "eeZZZZee",
+            "eeZZZZee",
+            "eeeeeeee",
+            "eeeeeeee"
             }
 
         };
 
         public Tetromino(TetrominoType type) {
-            
+            CreateTetromino(BODIES[(int) type]);
+        }
+
+        private void CreateTetromino(string[] stringBody) {
+            for (int x = 0; x < TETROMINO_WIDTH; ++x) {
+                for (int y = 0; y < TETROMINO_WIDTH; ++y) {
+                    // TODO assign the Body field from stringBody
+                }
+            }
         }
     
     }
