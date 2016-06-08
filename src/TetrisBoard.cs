@@ -26,8 +26,8 @@ namespace ConsoleTetris {
             // Set all Squares to be empty, except the border
             for (int i = 0; i < Width; ++i) {
                 for (int j = 0; j < Height; ++j) {
-                    if (i == 0 || j == 0 || 
-                            i == Width - 1 || j == Height - 1) { // border
+                    if (i <= 1 || j <= 1 || 
+                            i >= Width - 2 || j >= Height - 2) { // border
                         Squares[i, j] = SquareType.OUTSIDE;
                     } else {
                         Squares[i, j] = SquareType.EMPTY;
