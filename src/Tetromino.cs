@@ -1,8 +1,10 @@
+using System;
+
 namespace ConsoleTetris {
 
     class Tetromino {
 
-        private const int TETROMINO_WIDTH = 8;
+        public const int TETROMINO_WIDTH = 8;
 
         public TetrominoType Type {get; private set;}
         
@@ -95,10 +97,11 @@ namespace ConsoleTetris {
 
         };
 
-        public Tetromino(TetrominoType type) {
-            Type = type;
+        public Tetromino() {
+            var rnd = new Random();
+            Type = (TetrominoType) rnd.Next(0, 6);
             Body = new SquareType[TETROMINO_WIDTH,TETROMINO_WIDTH];
-            CreateTetromino(BODIES[(int) type]);
+            CreateTetromino(BODIES[(int) Type]);
         }
 
         private void CreateTetromino(string[] stringBody) {

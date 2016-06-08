@@ -14,6 +14,7 @@ namespace ConsoleTetris {
         private Dictionary<SquareType, char> CharMap;
 
         private TetrisBoard Board;
+        private SquareType[,] RenderedBoard;
         private int WindowHeight;
         private int WindowWidth;
 
@@ -22,6 +23,7 @@ namespace ConsoleTetris {
             WindowWidth = Console.WindowWidth;
             WindowHeight = Console.WindowHeight;
             Board = new TetrisBoard(WindowHeight, WindowWidth);
+            RenderedBoard = new SquareType[WindowWidth, WindowHeight];
         }
 
         private void InitializeMaps() {
@@ -49,14 +51,38 @@ namespace ConsoleTetris {
         }
         
         public void DrawBoard() {
+            RenderBoard();
             Console.Clear();
-            for (int y = 0; y < Board.Height; ++y) {
+            for (int y = 0; y < WindowHeight; ++y) {
                 // do this twice
                 Console.Write('\n');
-                for (int x = 0; x < Board.Width; ++x) {
-                    SquareType square = Board.GetSquare(x, y);
+                for (int x = 0; x < WindowWidth; ++x) {
+                    SquareType square = RenderedBoard[x, y];
                     Console.ForegroundColor = ColorMap[square];
                     Console.Write(CharMap[square]);
+                }
+            }
+        }
+
+        /*
+         * Renders the board by drawing the tetromino and
+         * the board.
+         */
+        private void RenderBoard() {
+            // draw the board
+            for (int x = 0; x < WindowWidth; ++x) {
+                for (int y = 0; y < WindowHeight; ++y) {
+                    RenderedBoard[x, y] = Board.GetSquare(x, y);
+                }
+            }
+            // put tetromino on top of it
+            int tx = Board.TetrominoX;
+            int ty = Board.TetrominoY;
+            Tetromino t = Board.FallingTetromino;
+
+            for (int x = 0; x < Tetromino.TETROMINO_WIDTH; ++x) {
+                for (int y = 0; y < Tetromino.TETROMINO_WIDTH; ++y) {
+                    RenderedBoard[x + tx, y + ty] = t.GetSquare(x, y);
                 }
             }
         }
