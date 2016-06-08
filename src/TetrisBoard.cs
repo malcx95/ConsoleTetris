@@ -6,12 +6,6 @@ namespace ConsoleTetris {
      */
 
 	class TetrisBoard {
-		
-        //int height;
-		//public int Height {
-        //    get {return height;} 
-        //    private set {height = value;}
-        //}
 
         public int Height {get; private set;}
 

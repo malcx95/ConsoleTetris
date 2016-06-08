@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace ConsoleTetris {
 
+    /*
+     * Class handling the graphical representation of 
+     * the board.
+     */ 
+
     class BoardWindow {
 
         private Dictionary<SquareType, ConsoleColor> ColorMap;
@@ -16,8 +21,7 @@ namespace ConsoleTetris {
             InitializeMaps();
             WindowWidth = Console.WindowWidth;
             WindowHeight = Console.WindowHeight;
-            Board = new TetrisBoard(WindowHeight / 2,
-                                    WindowWidth / 2);
+            Board = new TetrisBoard(WindowHeight, WindowWidth);
         }
 
         private void InitializeMaps() {
@@ -48,14 +52,11 @@ namespace ConsoleTetris {
             Console.Clear();
             for (int y = 0; y < Board.Height; ++y) {
                 // do this twice
-                for (int i = 0; i < 2; ++i) {
-                    Console.Write('\n');
-                    for (int x = 0; x < Board.Width; ++x) {
-                        SquareType square = Board.GetSquare(x, y);
-                        Console.ForegroundColor = ColorMap[square];
-                        Console.Write(CharMap[square]);
-                        Console.Write(CharMap[square]);
-                    }
+                Console.Write('\n');
+                for (int x = 0; x < Board.Width; ++x) {
+                    SquareType square = Board.GetSquare(x, y);
+                    Console.ForegroundColor = ColorMap[square];
+                    Console.Write(CharMap[square]);
                 }
             }
         }

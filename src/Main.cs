@@ -6,7 +6,7 @@ namespace ConsoleTetris
 	{
 		public static void Main (string[] args)
 		{
-            BoardWindow w = new BoardWindow();
+            var w = new BoardWindow();
             w.DrawBoard();
 		}
 	}
