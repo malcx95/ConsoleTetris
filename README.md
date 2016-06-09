@@ -20,5 +20,7 @@ To run on Linux, issue
 
 On Mac, issue
 
+```
   cd ConsoleTetris/obj/x86/Debug
   mono ConsoleTetris.exe
+  ```
