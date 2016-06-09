@@ -1,10 +1,10 @@
 # ConsoleTetris
 A little text-based game in your Linux/Mac Terminal.
 
-#Requirements
+##Requirements
 mono is required to compile.
 
-#Compilation
+##Compilation
 
 To compile, issue
 
