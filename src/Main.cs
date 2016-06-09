@@ -3,16 +3,16 @@ using System.Threading;
 
 namespace ConsoleTetris
 {
-	class MainClass
-	{
+    class MainClass
+    {
         private static BoardWindow Window;
 
         private static Timer timer;
         private static bool Ticked;
         private static bool Rushing;
 
-		public static void Main (string[] args)
-		{
+        public static void Main (string[] args)
+        {
             Console.Clear();
             Console.CursorVisible = false;
             string oldTitle = Console.Title;
@@ -23,7 +23,7 @@ namespace ConsoleTetris
             Console.CursorVisible = true;
             Console.Clear();
             Console.Title = oldTitle;
-		}
+        }
 
         private static void Tick(Object o) {
             if (!Rushing) {
@@ -64,5 +64,5 @@ namespace ConsoleTetris
             Window.RushDown();
             Rushing = false;
         }
-	}
+    }
 }
