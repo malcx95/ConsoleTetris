@@ -2,11 +2,11 @@ using System;
 
 namespace ConsoleTetris {
 
-    class Tetromino {
+    class Tetromino : ICloneable {
 
         public const int TETROMINO_WIDTH = 8;
 
-        public TetrominoType Type {get; private set;}
+        //public TetrominoType Type {get; private set;}
         
         private SquareType[,] Body;
 
@@ -99,9 +99,9 @@ namespace ConsoleTetris {
 
         public Tetromino() {
             var rnd = new Random();
-            Type = (TetrominoType) rnd.Next(0, 6);
+            int type = rnd.Next(0, 7);
             Body = new SquareType[TETROMINO_WIDTH,TETROMINO_WIDTH];
-            CreateTetromino(BODIES[(int) Type]);
+            CreateTetromino(BODIES[type]);
         }
 
         private void CreateTetromino(string[] stringBody) {
@@ -154,6 +154,10 @@ namespace ConsoleTetris {
             RotateRight();
             RotateRight();
             RotateRight();
+        }
+
+        public object Clone() {
+            return this.MemberwiseClone();
         }
     }
 }

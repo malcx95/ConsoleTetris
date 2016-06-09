@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ConsoleTetris {
 
@@ -52,15 +53,15 @@ namespace ConsoleTetris {
         
         public void DrawBoard() {
             RenderBoard();
-            Console.Clear();
+            Console.SetCursorPosition(0, 0);
             for (int y = 0; y < WindowHeight; ++y) {
                 // do this twice
-                Console.Write('\n');
                 for (int x = 0; x < WindowWidth; ++x) {
                     SquareType square = RenderedBoard[x, y];
                     Console.ForegroundColor = ColorMap[square];
                     Console.Write(CharMap[square]);
                 }
+                Console.CursorLeft = 0;
             }
         }
 
@@ -80,11 +81,32 @@ namespace ConsoleTetris {
             int ty = Board.TetrominoY;
             Tetromino t = Board.FallingTetromino;
 
+            if (t == null) return;
+
             for (int x = 0; x < Tetromino.TETROMINO_WIDTH; ++x) {
                 for (int y = 0; y < Tetromino.TETROMINO_WIDTH; ++y) {
-                    RenderedBoard[x + tx, y + ty] = t.GetSquare(x, y);
+                    SquareType square = t.GetSquare(x, y);
+                    if (square != SquareType.EMPTY) {
+                        RenderedBoard[x + tx, y + ty] = t.GetSquare(x, y);
+                    } 
                 }
             }
+        }
+
+        public void Tick() {
+            Board.Tick();
+        }
+
+        public void Move(bool left) {
+            Board.Move(left);
+        }
+
+        public void Rotate(bool left) {
+            Board.Rotate(left);
+        }
+
+        public void RushDown() {
+            Board.RushDown();
         }
     }
 }
